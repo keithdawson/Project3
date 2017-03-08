@@ -35,7 +35,7 @@ public:
 	zDepthList();
 	zDepthList(int [], int);
 	void out(const char);
-	//void move(int, int, char);
+	void move(int, int, char);
 	//void movefront(int);
 	//void moveback(int);
 	//int at(int);
@@ -121,23 +121,49 @@ zDepthList :: zDepthList(int a[], int l) {
 	}
 }
 void zDepthList :: out(const char c){
+	dllnode index;
 	if (c == 'f') {
-		dllnode index;
 		index = *list->head;
 		for (int i = 0; i <= list->size; i++) {
-			cout << index.value;
+			cout << index.value << endl;
 			index = *index.next;
 		}
 	}
 	else if (c == 'r') {
-		dllnode index;
 		index = *list->tail;
 		for (int i = 0; i <= list->size; i++) {
-			cout << index.value;
+			cout << index.value << endl;
 			index = *index.prev;
 		}
 	}
 }
+void zDepthList :: move(int i, int j, const char c){
+	dllnode index, previndex, postindex, moverindex;
+	index = *list->head;
+	for (int k = 0; k < i; k++) {
+		index = *index.next;
+	}
+	moverindex = index;
+	if (c == 'f') {
+		previndex = *index.prev;
+		previndex.next = index.next;
+		postindex = *index.next;
+		*postindex.prev = previndex;
 
+		for (int k = 0; k < j; k++){
+			moverindex = *moverindex.next;
+		}
+		index.prev =
+
+	}
+	else if (c == 'r') {
+		index = *list->tail;
+		for (int i = 0; i <= list->size; i++) {
+			cout << index.value << endl;
+			index = *index.prev;
+
+		}
+	}
+}
 
 
