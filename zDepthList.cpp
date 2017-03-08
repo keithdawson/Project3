@@ -35,16 +35,17 @@ public:
 	zDepthList();
 	zDepthList(int [], int);
 	void out(const char);
-	void move(int, int, char);
-	void movefront(int);
-	void moveback(int);
-	int at(int);
+	//void move(int, int, char);
+	//void movefront(int);
+	//void moveback(int);
+	//int at(int);
 	//int addback();
 	//int addfront();
 };
+static dll *list = NULL;
 
 static dll *newDLL() {
-	dll *list = NULL;
+
 	list->head = 0;
 	list->tail = 0;
 	list->size = 0;
@@ -117,6 +118,24 @@ zDepthList :: zDepthList(int a[], int l) {
 	list =  newDLL();
 	for (int i=0; i < l; i++){
 		insertDLL(list, i, &a[l]);
+	}
+}
+void zDepthList :: out(const char c){
+	if (c == 'f') {
+		dllnode index;
+		index = *list->head;
+		for (int i = 0; i <= list->size; i++) {
+			cout << index.value;
+			index = *index.next;
+		}
+	}
+	else if (c == 'r') {
+		dllnode index;
+		index = *list->tail;
+		for (int i = 0; i <= list->size; i++) {
+			cout << index.value;
+			index = *index.prev;
+		}
 	}
 }
 
