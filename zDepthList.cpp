@@ -27,11 +27,11 @@ public:
 
 private:
     List *list;                         //Node in the zDepthList
-    Node *listArray[];                     //The array which holds indices of the list
+    Node **listArray;                   //The array which holds indices of the list
 };
 
 
-zDepthList :: zDepthList() { //Default constructor
+zDepthList :: zDepthList() {            //Default constructor
     list->head = NULL;
     list->tail = NULL;
 }
@@ -44,7 +44,7 @@ zDepthList :: zDepthList(int array[], int l) {        //Constructor with paramet
     for(int i = 0; i < l; i++) {
 	    newNode = new Node;
 	    newNode->value = array[i];
-	   // listArray[i] = newNode;       //This is the p art that isn't workin
+	   // listArray[i] = newNode;       //This is the p art that isn't working
 	    if(list->head == 0) {        //If list is empty
 		    list->head = newNode;    //The head points to the new node
 		    list->tail = newNode;    //The tail points to the new node
@@ -52,10 +52,10 @@ zDepthList :: zDepthList(int array[], int l) {        //Constructor with paramet
 		    newNode->next = 0;
 		   }
 
-        else {
+        else if (1==1){
             newNode->previous = list->tail;     //Since the node is on the end, the new node points to the former end node
             tempNode = list->tail;              //The former end node points to the new node
-	       // cout <<tempNode->value;
+	        //cout <<tempNode->value;
 	        //tempNode->next = newNode;
 	        newNode->next = 0;                  //new node points to nothing
             //list->tail = newNode;               //The tail points to the new end of the list
