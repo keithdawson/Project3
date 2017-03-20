@@ -1,10 +1,12 @@
+//This is a Project3 by Blake Mizzell for CS101 Spring 2017
+
 #include <iostream>
 
 using namespace std;
 
 typedef struct dllnode
 {
-	void *value;
+	int value;
 	struct dllnode *prev;
 
 	struct dllnode *next;
@@ -19,7 +21,7 @@ typedef struct dll
 
 static dll *newDLL();
 
-void insertDLL(dll *items, int index, void *value);
+void insertDLL(dll *items, int index, int value);
 
 int sizeDLL(dll *items) {
 	return items->size;
@@ -28,7 +30,6 @@ int sizeDLL(dll *items) {
 class zDepthList {
 
 private:
-
 
 
 public:
@@ -52,7 +53,7 @@ static dll *newDLL() {
 	return list;
 }
 
-void insertDLL(dll *items,int index,void *value) {
+void insertDLL(dll *items,int index,int value) {
 	dllnode *newNode;
 	dllnode *curr;
 	newNode->value = value;
@@ -117,12 +118,12 @@ zDepthList :: zDepthList(int a[], int l) {
 	dll *list;
 	list =  newDLL();
 	for (int i=0; i < l; i++){
-		insertDLL(list, i, &a[l]);
+		insertDLL(list, i, a[i]);
 	}
 }
 void zDepthList :: out(const char c){
 	dllnode index;
-	if (c == 'f') {
+	if (c != 'r') {
 		index = *list->head;
 		for (int i = 0; i <= list->size; i++) {
 			cout << index.value << endl;
@@ -144,26 +145,25 @@ void zDepthList :: move(int i, int j, const char c){
 		index = *index.next;
 	}
 	moverindex = index;
-	if (c == 'f') {
-		previndex = *index.prev;
-		previndex.next = index.next;
-		postindex = *index.next;
-		*postindex.prev = previndex;
-
+	previndex = *index.prev;
+	previndex.next = index.next;
+	postindex = *index.next;
+	*postindex.prev = previndex;
+	if (c != 'r'){
 		for (int k = 0; k < j; k++){
 			moverindex = *moverindex.next;
 		}
-		index.prev =
-
 	}
 	else if (c == 'r') {
-		index = *list->tail;
-		for (int i = 0; i <= list->size; i++) {
-			cout << index.value << endl;
-			index = *index.prev;
-
+		for (int k = 0; k < j; k++) {
+			moverindex = *moverindex.prev;
 		}
 	}
+	index.prev = moverindex.prev;
+	*index.next = moverindex;
+	previndex = *moverindex.prev;
+	*previndex.next = index;
+	*moverindex.prev = index;
 }
 
 
