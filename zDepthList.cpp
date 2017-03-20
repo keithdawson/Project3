@@ -21,7 +21,7 @@ typedef struct dll
 
 static dll *newDLL();
 
-void insertDLL(dll *items, int index, int value);
+void insertDLL(dll *items, int index, int value, int*);
 
 int sizeDLL(dll *items) {
 	return items->size;
@@ -53,10 +53,11 @@ static dll *newDLL() {
 	return list;
 }
 
-void insertDLL(dll *items,int index,int value) {
+void insertDLL(dll *items,int index,int value, int * l) {
 	dllnode *newNode;
 	dllnode *curr;
 	newNode->value = value;
+	l[value] = newNode->value;
 	//insert at head
 	if (index == 0) {
 		newNode->prev = NULL;

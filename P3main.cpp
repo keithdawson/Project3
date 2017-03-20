@@ -12,7 +12,7 @@ int main() {
 	z.out('r');
 	//z.movefront(4);
 	//z.moveback(13);
-	///z.out();
+	//z.out();
 	cout << endl << endl;
 	for (int i=0;i<30;i+=2) l[i]=28-i;
 	zDepthList x(l,30);
