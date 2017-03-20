@@ -44,7 +44,7 @@ zDepthList :: zDepthList(int array[], int l) {        //Constructor with paramet
     for(int i = 0; i < l; i++) {
 	    newNode = new Node;
 	    newNode->value = array[i];
-	   // listArray[i] = newNode;       //This is the part that isn't workin
+	   // listArray[i] = newNode;       //This is the p art that isn't workin
 	    if(list->head == 0) {        //If list is empty
 		    list->head = newNode;    //The head points to the new node
 		    list->tail = newNode;    //The tail points to the new node
