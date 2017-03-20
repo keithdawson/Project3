@@ -6,7 +6,7 @@ using namespace std;
 
 typedef struct Node {           //A node for the doubly linked list
 	// public:
-	int value;
+	int value = NULL;
 	Node *previous;
 	Node *next;
 }Node;
@@ -27,9 +27,8 @@ public:
 
 private:
     List *list;                         //Node in the zDepthList
-    Node **listArray;                   //The array which holds indices of the list
+    int listIndexer[];                   //The array which holds indices of the list
 };
-
 
 zDepthList :: zDepthList() {            //Default constructor
     list->head = NULL;
@@ -37,28 +36,28 @@ zDepthList :: zDepthList() {            //Default constructor
 }
 
 zDepthList :: zDepthList(int array[], int l) {        //Constructor with parameters
-    Node *tempNode, *newNode;
+    Node *tempNode, *nextNode;
     if(l == 0)
-        cout << "An array can't be made with length 'zero' " << endl;
+        cout << "An array of 0 length can't be made." << endl;
 
     for(int i = 0; i < l; i++) {
-	    newNode = new Node;
-	    newNode->value = array[i];
-	   // listArray[i] = newNode;       //This is the p art that isn't working
+	    nextNode = new Node;
+	    nextNode->value = array[i];
+	    listIndexer[i] = i;      //Which is the index of the spot that [i] exists within the length of the linked list
 	    if(list->head == 0) {        //If list is empty
-		    list->head = newNode;    //The head points to the new node
-		    list->tail = newNode;    //The tail points to the new node
-		    newNode->previous = 0;   //New node doesn't point to anything
-		    newNode->next = 0;
+		    list->head = nextNode;    //The head points to the new node
+		    list->tail = nextNode;    //The tail points to the new node
+		    nextNode->previous = 0;   //New node doesn't point to anything
+		    nextNode->next = 0;
 		   }
 
         else if (1==1){
-            newNode->previous = list->tail;     //Since the node is on the end, the new node points to the former end node
+            nextNode->previous = list->tail;     //Since the node is on the end, the new node points to the former end node
             tempNode = list->tail;              //The former end node points to the new node
-	        //cout <<tempNode->value;
-	        //tempNode->next = newNode;
-	        newNode->next = 0;                  //new node points to nothing
-            //list->tail = newNode;               //The tail points to the new end of the list
+	        //if (i == 0 ){cout <<tempNode->value;}
+	        tempNode->next = nextNode;
+	        nextNode->next = 0;                  //new node points to nothing
+            //list->tail = nextNode;               //The tail points to the new end of the list
         }
    }
 
