@@ -27,7 +27,7 @@ public:
 
 private:
     List *list;                         //Node in the zDepthList
-     *listArray;                     //The array which holds indices of the list
+    Node *listArray[];                     //The array which holds indices of the list
 };
 
 
@@ -42,15 +42,15 @@ zDepthList :: zDepthList(int array[], int l) {        //Constructor with paramet
         cout << "An array can't be made with length 'zero' " << endl;
 
     for(int i = 0; i < l; i++) {
-        newNode = new Node;
-        newNode->value = l[i];
-		listArray[i] = *
-        if(list->head == 0) {        //If list is empty
-            list->head = newNode;    //The head points to the new node
-            list->tail = newNode;    //The tail points to the new node
-            newNode->previous = 0;   //New node doesn't point to anything
-            newNode->next = 0;
-        }
+	    newNode = new Node;
+	    newNode->value = array[i];
+	   // listArray[i] = newNode;       //This is the part that isn't workin
+	    if(list->head == 0) {        //If list is empty
+		    list->head = newNode;    //The head points to the new node
+		    list->tail = newNode;    //The tail points to the new node
+		    newNode->previous = 0;   //New node doesn't point to anything
+		    newNode->next = 0;
+		   }
 
         else {
             newNode->previous = list->tail;     //Since the node is on the end, the new node points to the former end node
@@ -60,6 +60,6 @@ zDepthList :: zDepthList(int array[], int l) {        //Constructor with paramet
 	        newNode->next = 0;                  //new node points to nothing
             //list->tail = newNode;               //The tail points to the new end of the list
         }
-    }
+   }
 
 }
