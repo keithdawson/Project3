@@ -4,166 +4,62 @@
 
 using namespace std;
 
-typedef struct dllnode
-{
+typedef struct Node {           //A node for the doubly linked list
+	// public:
 	int value;
-	struct dllnode *prev;
+	Node *previous;
+	Node *next;
+}Node;
 
-	struct dllnode *next;
-} dllnode;
-
-typedef struct dll
-{
-	dllnode *head;
-	dllnode *tail;
-	int size;
-} dll;
-
-static dll *newDLL();
-
-void insertDLL(dll *items, int index, int value);
-
-int sizeDLL(dll *items) {
-	return items->size;
-}
+typedef struct List {           //A special data structure that points to the head and tail nodes of the list.
+	// public:
+	Node *head;
+	Node *tail;
+}List;
 
 class zDepthList {
 
-private:
-
-
 public:
-	zDepthList();
-	zDepthList(int [], int);
-	void out(const char);
-	void move(int, int, char);
-	//void movefront(int);
-	//void moveback(int);
-	//int at(int);
-	//int addback();
-	//int addfront();
+    zDepthList();
+    zDepthList(int array[], int l);
+    //void out(const char c);
+    //void out();
+
+private:
+    List *list;                         //Node in the zDepthList
+     *listArray;                     //The array which holds indices of the list
 };
-static dll *list = NULL;
 
-static dll *newDLL() {
 
-	list->head = 0;
-	list->tail = 0;
-	list->size = 0;
-	return list;
+zDepthList :: zDepthList() { //Default constructor
+    list->head = NULL;
+    list->tail = NULL;
 }
 
-void insertDLL(dll *items,int index,int value) {
-	dllnode *newNode;
-	dllnode *curr;
-	newNode->value = value;
-	//insert at head
-	if (index == 0) {
-		newNode->prev = NULL;
-		newNode->next = items->head;
-		//if there is things already in the list
-		if (items->head) {
-			items->head->prev = newNode;
-		}
-		items->head = newNode;
-		if (items->head->next == NULL)
-			items->tail = newNode;
-	}
-		//insert at end
-	else if (index == items->size) {
-		if (items->tail)
-			items->tail->next = newNode;
-		newNode->next = NULL;
-		newNode->prev = items->tail;
-		items->tail = newNode;
-	}
-		//insert at index starting from tail
-	else if (index > (items->size / 2)) {
-		curr = items->tail;
-		int i;
-		for(i=sizeDLL(items)-index; curr; i--) {
-			//break if you reach index
-			if (i == 1)
-				break;
-			curr = curr->prev;
-		}
-		newNode->next = curr;
-		newNode->prev = curr->prev;
-		//if there is another thing in the list
-		if (curr->prev)
-			newNode->prev->next = newNode;
-		curr->prev = newNode;
-	}
-	else {
-		curr = items->head;
-		int i;
-		for(i=index; curr; i--) {
-			//break if you reach index
-			if (i == 1)
-				break;
-			curr = curr->next;
-		}
-		newNode->prev = curr;
-		newNode->next = curr->next;
-		//if there is another thing in the list
-		if (curr->next)
-			newNode->next->prev = newNode;
-		curr->next = newNode;
-	}
-	items->size++;
-}
+zDepthList :: zDepthList(int array[], int l) {        //Constructor with parameters
+    Node *tempNode, *newNode;
+    if(l == 0)
+        cout << "An array can't be made with length 'zero' " << endl;
 
-zDepthList :: zDepthList() {}
-zDepthList :: zDepthList(int a[], int l) {
-	dll *list;
-	list =  newDLL();
-	for (int i=0; i < l; i++){
-		insertDLL(list, i, a[i]);
-	}
-}
-void zDepthList :: out(const char c){
-	dllnode index;
-	if (c != 'r') {
-		index = *list->head;
-		for (int i = 0; i <= list->size; i++) {
-			cout << index.value << endl;
-			index = *index.next;
-		}
-	}
-	else if (c == 'r') {
-		index = *list->tail;
-		for (int i = 0; i <= list->size; i++) {
-			cout << index.value << endl;
-			index = *index.prev;
-		}
-	}
-}
-void zDepthList :: move(int i, int j, const char c){
-	dllnode index, previndex, postindex, moverindex;
-	index = *list->head;
-	for (int k = 0; k < i; k++) {
-		index = *index.next;
-	}
-	moverindex = index;
-	previndex = *index.prev;
-	previndex.next = index.next;
-	postindex = *index.next;
-	*postindex.prev = previndex;
-	if (c != 'r'){
-		for (int k = 0; k < j; k++){
-			moverindex = *moverindex.next;
-		}
-	}
-	else if (c == 'r') {
-		for (int k = 0; k < j; k++) {
-			moverindex = *moverindex.prev;
-		}
-	}
-	index.prev = moverindex.prev;
-	*index.next = moverindex;
-	previndex = *moverindex.prev;
-	*previndex.next = index;
-	*moverindex.prev = index;
-}
+    for(int i = 0; i < l; i++) {
+        newNode = new Node;
+        newNode->value = l[i];
+		listArray[i] = *
+        if(list->head == 0) {        //If list is empty
+            list->head = newNode;    //The head points to the new node
+            list->tail = newNode;    //The tail points to the new node
+            newNode->previous = 0;   //New node doesn't point to anything
+            newNode->next = 0;
+        }
 
+        else {
+            newNode->previous = list->tail;     //Since the node is on the end, the new node points to the former end node
+            tempNode = list->tail;              //The former end node points to the new node
+	       // cout <<tempNode->value;
+	        //tempNode->next = newNode;
+	        newNode->next = 0;                  //new node points to nothing
+            //list->tail = newNode;               //The tail points to the new end of the list
+        }
+    }
 
+}
