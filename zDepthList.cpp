@@ -24,7 +24,7 @@ public:
     //void out();
 
 private:
-    Node list/*used for temporary node access*/, *head, *tail;      //Node in the zDepthList
+    Node *head = new Node, *tail = new Node;      //Node in the zDepthList
     int listIndexer[];                   //The array which holds indices of the list
 };
 
@@ -52,7 +52,7 @@ zDepthList :: zDepthList(int array[], int l) {        //Constructor with paramet
         else if (1==1){
             nNode->prev = tail;     	//Since the node is on the end, the new node points to the former end node
 			nNode->next = 0;			//The former end node points to the new node
-	       // tail->next = nNode;			//new node points to nothing
+	        tail->next = nNode;			//new node points to nothing
 	        tail = nNode;
                       //The tail points to the new end of the list
         }
