@@ -4,7 +4,7 @@ using namespace std;
 int main() {
 	int l[30];
 	for (int i=0;i<30;i++) l[i]=i;
-	cout << "Test" << l[5];
+	cout << "Test";
 	zDepthList z(l,30);
 /*	z.out('f');
 	z.move(10,2,'f');

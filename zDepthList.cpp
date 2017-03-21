@@ -10,7 +10,7 @@ using namespace std;
 }List;*/
 typedef struct Node {           //A node for the doubly linked list
 	// public:
-	int value = NULL;
+	int value;
 	Node *prev;
 	Node *next;
 }Node;
@@ -38,10 +38,12 @@ zDepthList :: zDepthList(int array[], int l) {        //Constructor with paramet
     if(l == 0)
         cout << "An array of 0 length can't be made." << endl;
 
-    for(int i = 0; i < l; i++) {
+    for(int i = 0; i <= l; i++) {
 	    nNode = new Node;
 	    nNode->value = array[i];
-	    listIndexer[i] = i;      //Which is the index of the spot that [i] exists within the length of the linked list
+	    cout << tail->value;
+	    if ( i != l ) listIndexer[i] = i;      //Which is the index of the spot that [i] exists within the length of the linked list
+	    cout <<" ind " <<listIndexer[i];
 	    if(head == NULL) {        //If list is empty
 		    head  = nNode;    //The head points to the new node
 		    tail  = nNode;    //The tail points to the new node
