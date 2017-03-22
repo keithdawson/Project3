@@ -24,7 +24,8 @@ public:
     //void out();
 
 private:
-    Node *head = new Node, *tail = new Node;      //Node in the zDepthList
+    int listLength;
+	Node *head = new Node, *tail = new Node;      //Node in the zDepthList
     int listIndexer[];                   //The array which holds indices of the list
 };
 
@@ -35,6 +36,7 @@ zDepthList :: zDepthList() {            //Default constructor
 
 zDepthList :: zDepthList(int array[], int l) {        //Constructor with parameters
     Node *nNode, *tempNode;
+	listLength = l;
     if(l == 0)
         cout << "An array of 0 length can't be made." << endl;
 
@@ -62,4 +64,64 @@ zDepthList :: zDepthList(int array[], int l) {        //Constructor with paramet
 
 }
 
+void zDepthList :: out(const char c) {
+	Node *currentNode = new Node;
+	if ( c != 'r'){
+		currentNode = head;
+		cout << currentNode->value << ' ';
+		for (int i = 0; i < listLength; i++) {
+			currentNode = currentNode->next;
+			cout << currentNode->value << ' ';
+		}
+		cout << endl;
+	}
+	if (c == 'r'){
+		currentNode = tail;
+		cout << currentNode->value << ' ';
+		for (int i = 0; i < listLength; i++){
+			currentNode = currentNode->prev;
+			cout << currentNode->value;
+		}
+		cout << endl;
+	}
+}
 
+void zDepthList :: out() {
+	Node *indexNode = new Node;
+	currentNode = head;
+	cout << currentNode->value << ' ';
+	for (int i = 0; i < listLength; i++) {
+		currentNode = currentNode->next;
+		cout << currentNode->value << ' ';
+	}
+	cout << endl;
+}
+void zDepthList :: move(int i, int j, const char c) {
+	Node *holdIndex = new Node, *indexNode = new Node, *nextIndex = new Node, *prevIndex = new Node;
+	indexNode = head;
+	int location;
+	location = listIndexer[i];
+	for (int k=0; k < location; k++ ){
+		indexNode = indexNode->next;
+	}
+	holdIndex = indexNode;
+	prevIndex = indexNode->prev;
+	nextIndex = indexNode->next;
+	nextIndex->prev = prevIndex;
+	prevIndex->next = nextIndex;
+	if (c != 'r'){
+		for (int k = 0; k < j; k++){
+			indexNode = indexNode->next;
+		}
+	}
+	if (c == 'r'){
+		for (int k = 0; k < j; k++){
+			indexNode = indexNode->prev;
+		}
+	}
+	else cout << "Invalid char entry"<<endl;
+	nextIndex = indexNode->next;
+	indexNode->next = holdIndex;
+	nextIndex->prev = holdIndex;
+
+}
