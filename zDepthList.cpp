@@ -48,7 +48,7 @@ zDepthList :: zDepthList(int array[], int l) {        //Constructor with paramet
 	    if ( i != l ) listIndexer[i] = i;      //Which is the index of the spot that [i] exists within the length of the linked list
 	    cout <<" ind " <<listIndexer[i];
 	    if(head == NULL) {        //If list is empty
-		    head  = nNode;    //The head points to the new node
+		    head  = nNode;    //The head points  to the new node
 		    tail  = nNode;    //The tail points to the new node
 		    nNode->prev = 0;   //New node doesn't point to anything
 		    nNode->next = 0;
