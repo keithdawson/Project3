@@ -6,9 +6,9 @@ int main() {
 	for (int i=0;i<30;i++) l[i]=i;
 	cout << "Test";
 	zDepthList z(l,30);
-/*	z.out('f');
+	z.out('f');
 	z.move(10,2,'f');
-	//z.out();
+	z.out();
 	z.move(14,3,'r');
 	z.out('r');
 	//z.movefront(4);
@@ -37,5 +37,5 @@ int main() {
 	//for (int i=1;i<bigsize;i+=3) y.move(i,4);
 	for (int i=0;i<bigsize;i+=2) y.move(i,2,'r');
 	//cout << y.at(6) << " " << y.at(bigsize-2) << endl;
-*/
+
 }

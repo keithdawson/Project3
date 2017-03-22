@@ -20,8 +20,9 @@ class zDepthList {
 public:
     zDepthList();
     zDepthList(int array[], int l);
-    //void out(const char c);
-    //void out();
+    void out(const char c);
+    void out();
+	void move(int i, int j, char c);
 
 private:
     int listLength;
@@ -87,7 +88,7 @@ void zDepthList :: out(const char c) {
 }
 
 void zDepthList :: out() {
-	Node *indexNode = new Node;
+	Node *currentNode = new Node;
 	currentNode = head;
 	cout << currentNode->value << ' ';
 	for (int i = 0; i < listLength; i++) {
